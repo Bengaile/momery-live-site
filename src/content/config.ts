@@ -63,7 +63,7 @@ const gallery = defineCollection({
     category: z.enum([
       'The Road North', 'May Camp Prep', 'November Hunting', 'Campfire',
       'Meals & Kitchen', 'Boats & Lake', 'Wildlife', 'Family & Friends',
-      'Then & Now', 'MoMo & Home MOments', 'Drone Footage',
+      'Then & Now', 'MoMo & Home MOments', 'Drone Footage', 'Night Sky',
     ]),
     year: z.string().optional(),
     peopleShown: z.array(z.string()).default([]),
