@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  date?: string;
+  summary?: string;
+  href?: string;
+}
+const { title, date, summary, href } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag href={href} class="grid md:grid-cols-[0.9fr_2fr] gap-4 md:gap-8 py-6 border-b border-gold/25 group">
+  <div>
+    <h3 class="font-serif text-lg text-cream group-hover:text-gold-soft transition-colors">{title}</h3>
+    {date && <div class="font-hand text-gold-soft text-lg mt-1">{date}</div>}
+  </div>
+  {summary && <p class="text-cream-2/85 text-sm">{summary}</p>}
+</Tag>

@@ -1,0 +1,19 @@
+{
+  "name": "momery-live",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^4.16.0",
+    "@astrojs/tailwind": "^5.1.2",
+    "tailwindcss": "^3.4.13",
+    "autoprefixer": "^10.4.20"
+  }
+}

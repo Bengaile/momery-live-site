@@ -1,0 +1,19 @@
+---
+interface Props {
+  name: string;
+  role?: string;
+  favoriteMemory?: string;
+  song?: string;
+}
+const { name, role, favoriteMemory } = Astro.props;
+const initial = name.charAt(0);
+---
+<div class="bg-forest-deep border border-gold/20 px-6 py-7 transition-transform hover:-translate-y-1 hover:border-gold">
+  <div class="w-14 h-14 rounded-full mb-4 flex items-center justify-center font-serif text-forest-deep text-xl"
+       style="background:linear-gradient(140deg,#e0c074,#5c7c8a)">
+    {initial}
+  </div>
+  <h3 class="font-serif text-lg text-cream mb-1">{name}</h3>
+  {role && <p class="text-gold-soft text-sm mb-2">{role}</p>}
+  {favoriteMemory && <p class="text-cream-2/85 text-sm">{favoriteMemory}</p>}
+</div>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  flip?: boolean;
+  bg?: string; // tailwind bg class for the strip, e.g. "bg-cream-2"
+}
+const { flip = false, bg = '' } = Astro.props;
+---
+<svg
+  class={`w-full h-16 block ${bg}`}
+  viewBox="0 0 1200 64"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+>
+  <path
+    d="M0 32 Q 300 0, 600 32 T 1200 32"
+    fill="none"
+    stroke="#c9a24b"
+    stroke-width="2"
+    stroke-dasharray="9 11"
+    opacity="0.55"
+    transform={flip ? 'scale(1,-1) translate(0,-64)' : undefined}
+  />
+</svg>

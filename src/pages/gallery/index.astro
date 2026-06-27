@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+
+const photos = await getCollection('gallery');
+const categories = [...new Set(photos.map((p) => p.data.category))];
+---
+<BaseLayout
+  title="Photo Galleries"
+  description="Photos from Deer Camp, organized by season and story — from the road north to the lake at dusk."
+>
+  <section class="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+    <p class="eyebrow block mb-3">The Photos</p>
+    <h1 class="font-serif text-4xl md:text-5xl mb-6">Photo Galleries</h1>
+    <p class="opacity-80 max-w-2xl mb-8">
+      Organized by season and story — from the road north to the lake at dusk. Drone footage and
+      annual additions will join this archive over time.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-8">
+      {categories.map((cat) => (
+        <span class="text-xs px-3 py-1.5 border border-charcoal/40 rounded-full opacity-70">{cat}</span>
+      ))}
+    </div>
+    <GalleryGrid items={photos.map((p) => ({ title: p.data.title, image: p.data.image, category: p.data.category }))} />
+  </section>
+</BaseLayout>

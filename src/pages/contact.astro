@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Share a MOment"
+  description="Got a photo, clip, or story that belongs in the MOmery archive? Share it here."
+>
+  <section class="pt-32 pb-20 px-6 max-w-5xl mx-auto bg-forest text-cream">
+    <p class="eyebrow block mb-3">Add to the Archive</p>
+    <h1 class="font-serif text-4xl md:text-5xl mb-6">Share a MOment</h1>
+    <p class="opacity-80 max-w-xl mb-10">
+      Got a photo, a clip, or a story that belongs here? Send it our way. Every photo and story
+      helps make this archive more complete.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <p class="opacity-70 text-sm">
+        We'll only post what you give us permission to share.
+        <br /><br />
+        This form currently submits to Formspree. To connect it, sign up at
+        <a href="https://formspree.io" class="underline text-gold">formspree.io</a> and replace
+        the <code>YOUR_FORM_ID</code> placeholder in
+        <code>src/pages/contact.astro</code> with your real endpoint.
+      </p>
+
+      <form
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+        class="flex flex-col gap-4"
+      >
+        <div>
+          <label for="name" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Name</label>
+          <input id="name" name="name" type="text" required class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="email" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Email</label>
+          <input id="email" name="email" type="email" required class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="photo" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Upload photo or video</label>
+          <input id="photo" name="photo" type="file" class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="year" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Approximate year</label>
+          <input id="year" name="year" type="text" placeholder="e.g. 1998, or 'mid-2000s'" class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="who" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Who is in it?</label>
+          <input id="who" name="who" type="text" class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="where" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">Where was it taken?</label>
+          <input id="where" name="where" type="text" class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm" />
+        </div>
+        <div>
+          <label for="story" class="block text-xs uppercase tracking-wide text-gold-soft mb-1">What's the story behind it?</label>
+          <textarea id="story" name="story" rows="4" class="w-full bg-white/5 border border-gold/40 px-3 py-2 rounded-sm"></textarea>
+        </div>
+        <fieldset>
+          <legend class="block text-xs uppercase tracking-wide text-gold-soft mb-1">May we include this on MOmery.live?</legend>
+          <div class="flex gap-5 text-sm">
+            <label class="flex items-center gap-2"><input type="radio" name="permission" value="yes" checked /> Yes</label>
+            <label class="flex items-center gap-2"><input type="radio" name="permission" value="no" /> No, just archiving</label>
+          </div>
+        </fieldset>
+        <button type="submit" class="self-start mt-2 px-6 py-3 bg-gold text-forest-deep font-semibold text-sm hover:bg-gold-soft transition-colors">
+          Share a MOment
+        </button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RoadDivider from '../components/RoadDivider.astro';
+---
+<BaseLayout
+  title="MOmery"
+  description="MOmery.live is a living digital archive preserving Deer Camp's documentary, photos, music, stories, and people — the moments that become the memories."
+>
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center text-cream px-6 pt-32 pb-24 overflow-hidden bg-gradient-to-br from-forest-deep via-forest to-[#233a2c]">
+    <div id="embers" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+    <span class="font-hand text-2xl text-gold-soft mb-2 relative z-10">a living archive</span>
+    <h1 class="font-serif text-6xl md:text-8xl leading-none relative z-10">
+      MO<span class="text-gold-soft">mery</span>
+    </h1>
+    <p class="text-lg md:text-xl text-cream-2 mt-4 max-w-sm relative z-10">
+      The moments that become the memories.
+    </p>
+    <p class="font-hand text-2xl text-gold-soft mt-8 relative z-10">Every November begins in May.</p>
+    <div class="flex flex-wrap gap-3 justify-center mt-10 relative z-10">
+      <a href="/documentary/" class="px-6 py-3 bg-gold text-forest-deep font-semibold text-sm hover:bg-gold-soft transition-colors">Watch the Documentary</a>
+      <a href="/deer-camp/" class="px-6 py-3 border border-gold text-cream text-sm hover:bg-gold hover:text-forest-deep transition-colors">Explore Deer Camp</a>
+      <a href="/contact/" class="px-6 py-3 border border-gold text-cream text-sm hover:bg-gold hover:text-forest-deep transition-colors">Share a MOment</a>
+    </div>
+  </section>
+
+  <RoadDivider />
+
+  <section class="py-24 px-6 max-w-5xl mx-auto">
+    <p class="eyebrow block mb-3">Why MOmery</p>
+    <h2 class="font-serif text-3xl md:text-4xl mb-4">A digital campfire, not a film reel</h2>
+    <p class="opacity-80 max-w-2xl">
+      MOmery began with a little cat named MoMo, a toy she carried, and the realization that
+      the smallest moments often become the ones we treasure most. This site is where the
+      documentary, the photos, the songs, and the stories all live together — and where they'll
+      keep growing for years to come.
+    </p>
+  </section>
+
+  <script>
+    const wrap = document.getElementById('embers');
+    if (wrap) {
+      for (let i = 0; i < 18; i++) {
+        const e = document.createElement('div');
+        e.style.position = 'absolute';
+        e.style.bottom = '-10px';
+        e.style.left = Math.random() * 100 + '%';
+        e.style.width = '4px';
+        e.style.height = '4px';
+        e.style.borderRadius = '50%';
+        e.style.background = '#e0c074';
+        e.style.boxShadow = '0 0 6px 1px rgba(224,192,116,0.7)';
+        e.style.opacity = '0';
+        e.style.animation = `rise ${5 + Math.random() * 4}s ease-in ${Math.random() * 7}s infinite`;
+        e.style.setProperty('--drift', Math.random() * 60 - 30 + 'px');
+        wrap.appendChild(e);
+      }
+      const style = document.createElement('style');
+      style.textContent = `@keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0;}8%{opacity:.9;}100%{transform:translateY(-90vh) translateX(var(--drift,20px));opacity:0;}}`;
+      document.head.appendChild(style);
+    }
+  </script>
+</BaseLayout>

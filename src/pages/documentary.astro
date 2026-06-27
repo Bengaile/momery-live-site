@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const chapters = [
+  'The Road North',
+  'Every November Begins in May',
+  'Camp Life',
+  'The Hunt',
+  'The People',
+  'What We Carry Home',
+];
+---
+<BaseLayout
+  title="The Documentary"
+  description="The Deer Camp documentary — premiering Christmas 2026. Chapter list, credits, and the story behind the film."
+>
+  <section class="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+    <p class="eyebrow block mb-3">The Film</p>
+    <h1 class="font-serif text-4xl md:text-5xl mb-4">The Documentary</h1>
+    <p class="opacity-80 max-w-2xl mb-10">
+      A documentary about Deer Camp — the road north, the people who made it home, and the hunt
+      that brought everyone back together every November. Premiering Christmas 2026.
+    </p>
+
+    <div class="aspect-video bg-forest-deep border border-gold/30 flex flex-col items-center justify-center gap-3 text-cream-2 mb-12">
+      <div class="w-16 h-16 rounded-full border border-gold flex items-center justify-center text-gold text-2xl">&#9658;</div>
+      <span>Deer Camp — the documentary</span>
+      <p class="text-xs opacity-60 px-6 text-center">Video embed goes here once the final cut is ready.</p>
+    </div>
+
+    <h2 class="font-serif text-2xl mb-4">Chapters</h2>
+    <div class="grid sm:grid-cols-2 border-t border-gold/25">
+      {chapters.map((c, i) => (
+        <div class="flex items-baseline gap-3 py-4 border-b border-gold/25">
+          <span class="font-serif text-gold text-lg">{String(i + 1).padStart(2, '0')}</span>
+          <span>{c}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-16 font-hand text-2xl text-gold">
+      For MoMo
+      <small class="block font-sans text-xs uppercase tracking-widest text-charcoal/60 mt-2 not-italic">
+        Executive Producer of Inspiration
+      </small>
+    </div>
+  </section>
+</BaseLayout>

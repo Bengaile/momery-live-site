@@ -1,0 +1,36 @@
+---
+interface Song {
+  title: string;
+  artist: string;
+  mood: string;
+  scene?: string;
+}
+interface Props {
+  songs: Song[];
+}
+const { songs } = Astro.props;
+---
+<div class="overflow-x-auto">
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr>
+        <th class="text-left eyebrow pb-3 border-b border-gold/30">Song</th>
+        <th class="text-left eyebrow pb-3 border-b border-gold/30">Artist</th>
+        <th class="text-left eyebrow pb-3 border-b border-gold/30">Mood</th>
+        <th class="text-left eyebrow pb-3 border-b border-gold/30">Possible Scene</th>
+      </tr>
+    </thead>
+    <tbody>
+      {songs.map((song) => (
+        <tr class="border-b border-gold/10">
+          <td class="py-3 pr-2 font-serif">{song.title}</td>
+          <td class="py-3 pr-2">{song.artist}</td>
+          <td class="py-3 pr-2">
+            <span class="text-xs px-2.5 py-1 border border-lake text-lake rounded-full">{song.mood}</span>
+          </td>
+          <td class="py-3 pr-2">{song.scene}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

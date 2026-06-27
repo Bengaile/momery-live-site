@@ -1,0 +1,27 @@
+---
+interface Item {
+  title: string;
+  image: string;
+  category: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 auto-rows-[140px]">
+  {items.map((item, i) => (
+    <div class={`relative overflow-hidden group ${i % 3 === 2 ? 'row-span-2' : ''}`}>
+      <img
+        src={item.image}
+        alt={item.title}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <span class="absolute bottom-0 inset-x-0 font-hand text-cream text-sm bg-forest-deep/55 px-2 py-1">
+        {item.title}
+      </span>
+    </div>
+  ))}
+</div>
