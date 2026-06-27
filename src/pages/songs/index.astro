@@ -9,7 +9,7 @@ const songs = await getCollection('songs');
   title="Songs & Soundtrack"
   description="The songs that inspired the Deer Camp documentary, whether or not they make the final cut."
 >
-  <section class="pt-32 pb-20 px-6 max-w-5xl mx-auto bg-forest text-cream">
+  <section class="pt-10 pb-20 px-6 max-w-5xl mx-auto bg-forest text-cream">
     <p class="eyebrow block mb-3">The Soundtrack</p>
     <h1 class="font-serif text-4xl md:text-5xl mb-10">Songs &amp; Soundtrack</h1>
     <SongTable songs={songs.map((s) => s.data)} />

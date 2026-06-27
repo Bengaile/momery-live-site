@@ -1,0 +1,72 @@
+---
+/**
+ * Breadcrumbs
+ * ---------------------------------------------------------------
+ * Automatically builds "Home > Section > Page" navigation from the
+ * current URL path. Add a new page under src/pages/ and it gets a
+ * breadcrumb trail for free — no per-page wiring needed.
+ *
+ * For pages with a human-friendly title that doesn't match the URL
+ * slug (e.g. a story page at /stories/the-day-the-road-opened/
+ * should show "The Day the Road Opened", not the raw slug), pass
+ * `finalLabel` to override just the last crumb.
+ */
+interface Props {
+  finalLabel?: string;
+}
+const { finalLabel } = Astro.props;
+
+// Maps a URL segment to a readable label. Add an entry here whenever
+// a new top-level section is added under src/pages/.
+const LABELS: Record<string, string> = {
+  documentary: 'Documentary',
+  'deer-camp': 'Deer Camp',
+  people: 'People',
+  stories: 'Stories',
+  gallery: 'Gallery',
+  songs: 'Songs & Soundtrack',
+  about: 'About',
+  contact: 'Share a MOment',
+  phase2: 'Phase 2',
+  search: 'Search',
+  timeline: 'Timeline',
+  map: 'Map',
+  'vietnam-slides': "Dad's Vietnam Slides",
+  'family-archive': 'Family Archive',
+  login: 'Family Login',
+};
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+
+const crumbs = segments.map((segment, i) => {
+  const isLast = i === segments.length - 1;
+  const href = '/' + segments.slice(0, i + 1).join('/') + '/';
+  const label =
+    isLast && finalLabel
+      ? finalLabel
+      : LABELS[segment] ??
+        segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  return { label, href, isLast };
+});
+---
+{segments.length > 0 && (
+  <nav aria-label="Breadcrumb" class="text-sm">
+    <ol class="flex flex-wrap items-center gap-1.5">
+      <li>
+        <a href="/" class="text-gold hover:text-gold-soft underline">Home</a>
+      </li>
+      {crumbs.map((crumb) => (
+        <>
+          <li aria-hidden="true" class="opacity-50">/</li>
+          <li>
+            {crumb.isLast ? (
+              <span class="opacity-70" aria-current="page">{crumb.label}</span>
+            ) : (
+              <a href={crumb.href} class="text-gold hover:text-gold-soft underline">{crumb.label}</a>
+            )}
+          </li>
+        </>
+      ))}
+    </ol>
+  </nav>
+)}

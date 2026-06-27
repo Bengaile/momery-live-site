@@ -2,6 +2,7 @@
 import SEO from '../components/SEO.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,8 +10,10 @@ interface Props {
   description: string;
   image?: string;
   noindex?: boolean;
+  breadcrumbLabel?: string; // overrides the last breadcrumb (e.g. a story's real title instead of its URL slug)
 }
-const { title, description, image, noindex } = Astro.props;
+const { title, description, image, noindex, breadcrumbLabel } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +24,13 @@ const { title, description, image, noindex } = Astro.props;
 </head>
 <body class="font-sans text-charcoal antialiased">
   <Nav />
+  {!isHome && (
+    <div class="pt-20 px-6 py-3 bg-cream-2 border-b border-charcoal/10">
+      <div class="max-w-6xl mx-auto">
+        <Breadcrumbs finalLabel={breadcrumbLabel} />
+      </div>
+    </div>
+  )}
   <main>
     <slot />
   </main>
