@@ -22,6 +22,7 @@ const people = defineCollection({
     photo: z.string().optional(), // path under /public/images/people/
     favoriteMemory: z.string().optional(),
     song: z.string().optional(), // links to a songs collection slug, optional
+    category: z.enum(['human', 'pet']).default('human'), // pets get their own public page
     order: z.number().default(99),
   }),
 });

@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PersonCard from '../../components/PersonCard.astro';
+
+const pets = (await getCollection('people', ({ data }) => data.category === 'pet'))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout
+  title="The Camp Pets"
+  description="MoMo, Thor, and Dot — the camp pets with their own corner of the archive, just for them."
+>
+  <section class="pt-10 pb-20 px-6 max-w-6xl mx-auto bg-forest text-cream">
+    <p class="eyebrow block mb-3">A Page of Their Very Own</p>
+    <h1 class="font-serif text-4xl md:text-5xl mb-4">The Camp Pets</h1>
+    <p class="opacity-80 max-w-2xl mb-10">
+      Every archive needs a page for the ones who can't tell their own stories — so here it is,
+      just for MoMo, Thor, and Dot.
+    </p>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+      {pets.map((pet) => (
+        <PersonCard
+          name={pet.data.name}
+          role={pet.data.role}
+          favoriteMemory={pet.data.favoriteMemory}
+        />
+      ))}
+    </div>
+    <p class="mt-10 text-sm opacity-70">
+      New pet to add? Drop a new Markdown file in <code>src/content/people/</code> with
+      <code>category: pet</code> — no other changes needed.
+    </p>
+    <p class="mt-4">
+      <a href="/people/" class="text-gold-soft underline hover:text-gold">&larr; Back to People</a>
+    </p>
+  </section>
+</BaseLayout>

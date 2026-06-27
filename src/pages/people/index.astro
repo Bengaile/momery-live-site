@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PersonCard from '../../components/PersonCard.astro';
 
-const people = (await getCollection('people')).sort((a, b) => a.data.order - b.data.order);
+const people = (await getCollection('people', ({ data }) => data.category === 'human'))
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 <BaseLayout
   title="People"
@@ -24,6 +25,9 @@ const people = (await getCollection('people')).sort((a, b) => a.data.order - b.d
     <p class="mt-10 text-sm opacity-70">
       New person to add? Drop a new Markdown file in <code>src/content/people/</code> — no other
       changes needed.
+    </p>
+    <p class="mt-4">
+      <a href="/pets/" class="text-gold-soft underline hover:text-gold">Meet the camp pets &rarr;</a>
     </p>
   </section>
 </BaseLayout>
