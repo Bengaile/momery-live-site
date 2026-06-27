@@ -3,17 +3,30 @@ interface Props {
   name: string;
   role?: string;
   favoriteMemory?: string;
+  family?: string;
+  photo?: string;
   song?: string;
 }
-const { name, role, favoriteMemory } = Astro.props;
+const { name, role, favoriteMemory, family, photo } = Astro.props;
 const initial = name.charAt(0);
 ---
 <div class="bg-forest-deep border border-gold/20 px-6 py-7 transition-transform hover:-translate-y-1 hover:border-gold">
-  <div class="w-14 h-14 rounded-full mb-4 flex items-center justify-center font-serif text-forest-deep text-xl"
-       style="background:linear-gradient(140deg,#e0c074,#5c7c8a)">
-    {initial}
-  </div>
+  {photo ? (
+    <img
+      src={photo}
+      alt={name}
+      loading="lazy"
+      decoding="async"
+      class="w-14 h-14 rounded-full mb-4 object-cover border border-gold/40"
+    />
+  ) : (
+    <div class="w-14 h-14 rounded-full mb-4 flex items-center justify-center font-serif text-forest-deep text-xl"
+         style="background:linear-gradient(140deg,#e0c074,#5c7c8a)">
+      {initial}
+    </div>
+  )}
   <h3 class="font-serif text-lg text-cream mb-1">{name}</h3>
-  {role && <p class="text-gold-soft text-sm mb-2">{role}</p>}
+  {role && <p class="text-gold-soft text-sm mb-1">{role}</p>}
+  {family && <p class="text-cream-2/60 text-xs uppercase tracking-wide mb-2">{family}</p>}
   {favoriteMemory && <p class="text-cream-2/85 text-sm">{favoriteMemory}</p>}
 </div>

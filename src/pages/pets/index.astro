@@ -23,6 +23,7 @@ const pets = (await getCollection('people', ({ data }) => data.category === 'pet
           name={pet.data.name}
           role={pet.data.role}
           favoriteMemory={pet.data.favoriteMemory}
+          photo={pet.data.photo}
         />
       ))}
     </div>

@@ -21,6 +21,7 @@ const people = defineCollection({
     role: z.string().optional(),
     photo: z.string().optional(), // path under /public/images/people/
     favoriteMemory: z.string().optional(),
+    family: z.string().optional(), // e.g. "Mattison Family" — shown as a small tag under the name
     song: z.string().optional(), // links to a songs collection slug, optional
     category: z.enum(['human', 'pet']).default('human'), // pets get their own public page
     order: z.number().default(99),

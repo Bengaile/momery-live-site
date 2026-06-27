@@ -19,6 +19,8 @@ const people = (await getCollection('people', ({ data }) => data.category === 'h
           name={person.data.name}
           role={person.data.role}
           favoriteMemory={person.data.favoriteMemory}
+          family={person.data.family}
+          photo={person.data.photo}
         />
       ))}
     </div>
