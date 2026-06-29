@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+  {
+    label: 'Google Form Editor',
+    note: 'Edit questions, title, settings.',
+    href: 'https://docs.google.com/forms/d/1M6_1RHz6CDTKfyOY_t2yKk7iBt1eZCUznjZGpp4rcxU/edit',
+  },
+  {
+    label: 'Google Form Responses',
+    note: 'View submissions inside the Form itself (summary + individual view).',
+    href: 'https://docs.google.com/forms/d/1M6_1RHz6CDTKfyOY_t2yKk7iBt1eZCUznjZGpp4rcxU/edit#responses',
+  },
+  {
+    label: 'Linked Google Sheet (raw responses)',
+    note: 'Cherished Memories — auto-fills from the Form, one row per submission.',
+    href: 'https://docs.google.com/spreadsheets/d/1I_w-QX0TIOLiat-29YRzvYRJL2Argkr5SutuOCQyiL0/edit',
+  },
+  {
+    label: 'Google Drive Photo/Video Upload Folder',
+    note: 'Where visitors drop files directly (linked on the Share a MOment page).',
+    href: 'https://drive.google.com/drive/folders/1bPwOQ_GLn0-E2XpyDw37L8LP9cMn67H3?usp=drive_link',
+  },
+  {
+    label: 'Approved Memories Spreadsheet',
+    note: 'Reviewed and approved responses, ready to move toward the live site.',
+    href: 'https://docs.google.com/spreadsheets/d/1qeAUvDuuDE3yQk4T3DXULaA2H1u_sQ6SiWSSu85veBg/edit',
+  },
+  {
+    label: 'Website Content Staging Sheet',
+    note: 'Where copy gets drafted/staged before going live on the Memories page.',
+    href: 'https://docs.google.com/spreadsheets/d/1y73TjMIMreSo9l73_cRXZExmL2y-Uue3X7NIO84uN94/edit',
+  },
+];
+---
+<BaseLayout
+  title="Admin"
+  description="Internal MOmery admin links."
+  noindex={true}
+>
+  <section class="pt-10 pb-20 px-6 max-w-3xl mx-auto bg-cream-2">
+    <p class="eyebrow block mb-3">Internal Only</p>
+    <h1 class="font-serif text-4xl md:text-5xl mb-6">Admin</h1>
+    <p class="opacity-80 mb-10">
+      Quick links for managing MOmery submissions. This page is unlisted (not in the nav menu,
+      not indexed by search engines) but is not password-protected &mdash; treat the link itself
+      as the access control, and don't share it publicly.
+    </p>
+
+    <div class="space-y-4 mb-14">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block border border-charcoal/15 hover:border-gold px-6 py-4 transition-colors"
+        >
+          <span class="block font-serif text-xl mb-1">{link.label}</span>
+          <span class="block text-sm opacity-70">{link.note}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="border-t border-charcoal/15 pt-10">
+      <h2 class="font-serif text-2xl mb-4">Workflow</h2>
+      <ol class="list-decimal list-inside space-y-2 opacity-85 max-w-xl">
+        <li>Visitor submits a MOment through the Google Form.</li>
+        <li>The response lands automatically in the linked Google Sheet.</li>
+        <li>Any uploaded photos/videos go into the Google Drive folder (uploaded separately by the visitor, since Forms file-uploads require a Google sign-in).</li>
+        <li>Admin reviews new rows in the Sheet.</li>
+        <li>Admin marks a response <strong>Approved = Yes</strong> in the Sheet (add this column if it doesn't exist yet).</li>
+        <li>Approved content gets copied into the Approved Memories spreadsheet and/or the Website Content Staging Sheet.</li>
+        <li>From staging, content is manually copied into the live Memories page (or, for longer pieces, drafted out in a Google Doc first, then brought over).</li>
+      </ol>
+      <p class="opacity-70 text-sm mt-6">
+        Google Docs is only used for polished long-form writeups after a response has already
+        been reviewed and approved &mdash; never as the primary intake or database.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
