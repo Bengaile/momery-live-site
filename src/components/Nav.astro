@@ -6,16 +6,15 @@
  * `phase: 2` items render with a "Soon" tag until they're ready;
  * flip `enabled: true` when the page is live.
  */
+// cache bust
 const NAV_LINKS = [
   { href: '/documentary/', label: 'Documentary', phase: 1, enabled: true },
   { href: '/deer-camp/', label: 'Deer Camp', phase: 1, enabled: true },
   { href: '/people/', label: 'People', phase: 1, enabled: true },
-  { href: '/pets/', label: 'Camp Pets', phase: 1, enabled: true },
   { href: '/stories/', label: 'Stories', phase: 1, enabled: true },
   { href: '/gallery/', label: 'Gallery', phase: 1, enabled: true },
   { href: '/about/', label: 'About', phase: 1, enabled: true },
   { href: '/contact/', label: 'Share a MOment', phase: 1, enabled: true },
-  { href: '/memories/', label: 'Memories', phase: 1, enabled: true },
   { href: '/phase2/timeline/', label: 'Timeline', phase: 2, enabled: false },
   { href: '/phase2/map/', label: 'Map', phase: 2, enabled: false },
 ];
@@ -43,7 +42,7 @@ const NAV_LINKS = [
 </header>
 
 <script>
-  const header = document.getElementById('site-header');
+  const header =  document.getElementById('site-header');
   const toggleBtn = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
 
